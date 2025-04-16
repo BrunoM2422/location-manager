@@ -22,7 +22,7 @@
       const sku = document.getElementById("sku").value;
       const localizacao = document.getElementById("localizacao").value;
 
-      const resposta = await fetch("http://localhost:3000/atualizar-localizacao", {
+      const resposta = await fetch("https://location-manager-updater.onrender.com/atualizar-localizacao", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sku, localizacao }),
