@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Atualizar Localização de Produto</title>
+</head>
+<body>
+  <h2>Atualizar Localização</h2>
+  <form id="update-form">
+    <label>SKU (Código do Produto):</label><br/>
+    <input type="text" id="sku" required /><br/><br/>
+    <label>Nova Localização:</label><br/>
+    <input type="text" id="localizacao" required /><br/><br/>
+    <button type="submit">Atualizar</button>
+  </form>
+  <p id="status"></p>
+
+  <script>
+    document.getElementById("update-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const sku = document.getElementById("sku").value;
+      const localizacao = document.getElementById("localizacao").value;
+
+      const resposta = await fetch("http://localhost:3000/atualizar-localizacao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sku, localizacao }),
+      });
+
+      const resultado = await resposta.json();
+      document.getElementById("status").innerText = resultado.mensagem;
+    });
+  </script>
+</body>
+</html>
